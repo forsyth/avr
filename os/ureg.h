@@ -1,0 +1,35 @@
+struct Ureg {
+	uchar	sreg;
+	uchar	r31;
+	uchar	r30;
+	uchar	r29;
+	uchar	r28;
+	uchar	r27;
+	uchar	r26;
+	uchar	r25;
+	uchar	r24;
+	uchar	r23;
+	uchar	r22;
+	uchar	r21;
+	uchar	r20;
+	uchar	r19;
+	uchar	r18;
+	uchar	r17;
+	uchar	r16;
+	uchar	r15;
+	uchar	r14;
+	uchar	r13;
+	uchar	r12;
+	uchar	r11;
+	uchar	r10;
+	uchar	r9;
+	uchar	r8;
+	uchar	r7;
+	uchar	r6;
+	uchar	r5;
+	uchar	r4;
+	/* don't save r3:r2 (REGZERO) */
+	uchar	r1;
+	uchar	r0;
+	ushort	pc;
+};

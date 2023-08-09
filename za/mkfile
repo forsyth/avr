@@ -1,0 +1,21 @@
+</$objtype/mkfile
+
+TARG=za
+
+OFILES=\
+	y.tab.$O\
+	lex.$O\
+
+HFILES=\
+	../zc/z.out.h\
+	y.tab.h\
+	a.h\
+
+YFILES=\
+	a.y
+
+BIN=/$objtype/bin
+
+</sys/src/cmd/mkone
+
+lex.$O:	../cc/macbody ../cc/lexbody ../cc/compat

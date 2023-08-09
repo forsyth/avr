@@ -1,0 +1,47 @@
+Address
+
+6 bit		I/O port
+16 bit	data direct (byte?)
+6 bit		Y/Z offset	(unsigned)
+16 bit	program word address
+12 bit	signed pc relative
+6 bit		signed pc relative (branch)
+		=> will need branch over opposite jump for full dist.
+
+Literals
+
+16 bit unsigned	STS (store direct data)
+6 bit unsigned		ADIW
+8 bit unsigned		ANDI, CPI [also signed], LDI
+3 bit unsigned
+
+Rules
+
+ADIW, SBIW
+		only 25:24, 27:26, 29:28, 31:30 [with 0 1 2 3 encoding]
+		also note that together they allow signed -63 .. 63 add/sub of literal
+ANDI, CBI [ANDN/BIC], CPI, LDI, ORI, SUBI, MULS
+		only R16-R31
+MOV -> OUT if RAMP register, SP
+MOVW
+		allows all even/odd pairs
+
+Register restrictions
+
+16-31	most immediate
+16-23	MULSU
+24, 26, 28, 30	ADDIW, SBIW, [also 6 bit literals]
+
+thus
+
+0-15	byte
+16-24	16-bit integer pairs
+26-30	16-bit addresses
+
+remember it's byte address for data, word address for text (except for E?LPM)
+
+compare-and-skip
+
+SREG, SP, RAMPx and others are IO ports
+
+shifts:	8* => movb*, clear/movb $FF behind; one bit; swap 4x4 then mask?

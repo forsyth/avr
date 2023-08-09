@@ -1,0 +1,38 @@
+.TH MOTEREAD 1
+.SH NAME
+moteread \- gather results from a base station
+.SH SYNOPSIS
+.B db
+[
+.BI -d " serial device"
+]
+.I " results directory"
+.SH DESCRIPTION
+.B Moteread
+records decibel levels of a set of motes fitted with a microphone. Typically
+the motes send their data to a base station which is connected via a serial line to the
+host computer. The
+.B -d
+option selects the serial device to use (/dev/eia0 by default). Typical
+arguments might be /dev/eia1, eia1 or even 1 for brevity.
+.PP
+.B Moteread
+expects to read packets from the base station through the serial device. A packet consists
+of a 2 byte synchronization integer, a 2 byte mote identification number, a 2 byte time
+stamp and a sequence of recorded decibel values (currently 2). Values are in big-endian
+order.
+.PP
+For each mote id,
+.B moteread
+writes the results to a file of the form <moteid.db> in the given results directory.
+Each file consists of a 4 byte
+start time in seconds followed by a series of records. Each record consists of a 2 byte
+time offset in seconds and a series of decibel values (currently 2) taken at certain
+intervals (currently 1 second) from that time offset. Values are in little-endian
+order.
+.SH SOURCE
+.B /appl/cmd/mote/moteread.b
+.SH SEE ALSO
+.IR db (1),
+.IR dbmap (1),
+.IR spectrum (1)

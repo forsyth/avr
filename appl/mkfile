@@ -1,0 +1,30 @@
+</usr/inferno/mkconfig
+
+TARG=\
+	db.dis\
+	dbmap.dis\
+	map.dis\
+	moteread.dis\
+	resamplemod.dis\
+	spectrum.dis\
+
+SYSMODULES=\
+	sys.m\
+	draw.m\
+	arg.m\
+	rand.m\
+	tk.m\
+	tkclient.m\
+	daytime.m\
+	math.m\
+	sh.m\
+	bufio.m\
+	math/geodesy.m\
+	readdir.m\
+	string.m\
+
+MODULES=\
+	resamplemod.m\
+
+DISBIN=$ROOT/dis/mote
+<$ROOT/mkfiles/mkdis

@@ -1,0 +1,8 @@
+#define	BREAK	WORD	$0x9598
+
+TEXT	_startup(SB), $0
+	EORB	R18, R18
+	INC	R18
+	CMPB	$10, R18
+	BLT	-2(PC)
+	BREAK

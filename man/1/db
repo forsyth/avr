@@ -1,0 +1,32 @@
+.TH DB 1
+.SH NAME
+db \- display of decibel levels
+.SH SYNOPSIS
+.B db
+[
+.BI -d " serial device"
+]
+.SH DESCRIPTION
+.B Db
+displays the recorded decibel levels of a set of motes fitted with a microphone. Typically
+the motes send their data to a base station which is connected via a serial line to the
+host computer. The
+.B -d
+option selects the serial device to use (/dev/eia0 by default). Typical
+arguments might be /dev/eia1, eia1 or even 1 for brevity.
+.PP
+.B Db
+expects to read packets from the base station through the serial device. A packet consists
+of a 2 byte synchronization integer, a 2 byte mote identification number, a 2 byte time
+stamp and a sequence of recorded decibel values (currently 2). Values are in big-endian
+order.
+.PP
+.B Db
+displays a window for each mote it encounters. The mote id appears in the title of the
+window. This display shows the sequence of decibel readings on a vertical scale of
+40 dB to 100 dB.
+.SH SOURCE
+.B /appl/cmd/mote/db.b
+.SH SEE ALSO
+.IR dbmap (1),
+.IR spectrum (1)

@@ -1,0 +1,47 @@
+objtype=avr
+
+O=z
+CC=zc
+AS=za
+LD=zl
+# </$objtype/mkfile
+
+LIB=libc.a
+# LIB=/$objtype/lib/libc.a
+
+SFILES=\
+	asrb.s\
+	asrl.s\
+	asrw.s\
+	divb.s\
+	divl.s\
+	divw.s\
+	exit.s\
+	lslb.s\
+	lsll.s\
+	lslw.s\
+	lsrb.s\
+	lsrl.s\
+	lsrw.s\
+	memcmp.s\
+	memmove.s\
+	memset.s\
+	modb.s\
+	modl.s\
+	modw.s\
+	mulb.s\
+	mull.s\
+	mulw.s\
+
+CFILES=\
+
+HFILES=\
+
+OFILES=${CFILES:%.c=%.$O} ${SFILES:%.s=%.$O}
+
+UPDATE=mkfile\
+	$HFILES\
+	$CFILES\
+	$SFILES\
+
+</sys/src/cmd/mksyslib

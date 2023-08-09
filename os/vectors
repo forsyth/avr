@@ -1,0 +1,9 @@
+4	flashintr	1
+16	timer0intr	1
+18	spiintr	0
+22	adcintr	0
+34	i2cintr	1
+13	mactimer	1
+23	eeready	1
+19	uart0rxintr	1
+20	uart0udre	1

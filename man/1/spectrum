@@ -1,0 +1,41 @@
+.TH SPECTRUM 1
+.SH NAME
+spectrum \- display of power spectrum
+.SH SYNOPSIS
+.B spectrum
+[
+.BI -d " serial device"
+]
+.SH DESCRIPTION
+.B Spectrum
+displays the power spectrum and current decibel level as recorded by
+a mote fitted with a microphone. These measurements can be sent
+directly over a serial line connected to the mote itself or over a
+serial line connected to a base station that is receiving the
+measurements from the mote by radio for instance. The
+.B -d
+option selects the serial device to use (/dev/eia0 by default). Typical
+arguments might be /dev/eia1, eia1 or even 1 for brevity.
+.PP
+.B Spectrum
+expects to read a packet of data sent either almost continuously
+or every few seconds through the serial device. This packet consists of
+a 4 byte synchronization integer, then 129 4 byte integers giving
+the power values in each of the frequency bins which range from
+0 Hz to around 18KHz, then another 2 byte synchronization integer
+and finally a 1 byte decibel value. Values are in big-endian order.
+.PP
+.B Spectrum
+displays two windows. The first shows the power spectrum at
+a given moment. The scale of the vertical axis can be adjusted
+by moving the slider on the left hand side of the window. The
+minimum Db level so far, the current Db level and the maximum
+Db level so far are shown at the top of the window and a more
+visual recording of these on the right hand side of the window.
+The second window records past decibel readings. The vertical
+scale ranges from 40 dB to 100 dB here.
+.SH SOURCE
+.B /appl/cmd/mote/spectrum.b
+.SH SEE ALSO
+.IR db (1),
+.IR dbmap (1)

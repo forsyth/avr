@@ -1,0 +1,14 @@
+</$objtype/mkfile
+
+OFILES=\
+	zi.$O\
+
+HFILES=\
+	zops.h\
+
+
+BIN=$home/bin/$objtype
+BIN=/$objtype/bin
+TARG=zi
+
+</sys/src/cmd/mkone

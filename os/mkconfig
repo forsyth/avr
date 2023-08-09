@@ -1,0 +1,6 @@
+</sys/src/mkfile.proto
+OS=z8
+CC=zc
+AS=za
+LD=zl
+O=z

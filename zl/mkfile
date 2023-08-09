@@ -1,0 +1,28 @@
+</$objtype/mkfile
+
+TARG=zl
+
+OFILES=\
+	asm.$O\
+	list.$O\
+	obj.$O\
+	optab.$O\
+	pass.$O\
+	span.$O\
+	enam.$O\
+	noop.$O\
+	asmout.$O\
+	cnam.$O\
+	Plan9.$O\
+
+HFILES=\
+	l.h\
+	../zc/z.out.h\
+	/usr/inferno/utils/include/ar.h\
+
+BIN=/$objtype/bin
+
+</sys/src/cmd/mkone
+
+enam.$O:	../zc/enam.c
+	$CC $CFLAGS ../zc/enam.c

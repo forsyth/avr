@@ -1,0 +1,100 @@
+<mkconfig
+TARG=kernel
+BIN=.
+
+APP= fft256.$O fftl.$O
+
+STARTFILES=\
+	vec.$O\
+	l.$O\
+
+COMMONFILES=\
+	lib.$O\
+	alloc.$O\
+#	alt.$O\
+	bat.$O\
+#	circ.$O\
+	adc.$O\
+	cc1k.$O\
+	clock.$O\
+	crc16.$O\
+	divb.$O\
+	divl.$O\
+	divw.$O\
+	donprint.$O\
+	ds2401.$O\
+	flash.$O\
+	i2c.$O\
+#	lfs.$O\
+	lslb.$O\
+	lsll.$O\
+	lslw.$O\
+	lsrw.$O\
+	eeprom.$O\
+	mac.$O\
+	memmove.$O\
+	memset.$O\
+	modb.$O\
+	modl.$O\
+	mull.$O\
+	mulw.$O\
+	port.$O\
+	print.$O\
+	proc.$O\
+	qio.$O\
+	qlock.$O\
+	radio.$O\
+	sb.$O\
+	sink.$O\
+	slip.$O\
+	slp.$O\
+	spi.$O\
+	string.$O\
+	uart.$O\
+	woof.$O\
+
+OFILES=\
+	$STARTFILES\
+	main.$O\
+	$COMMONFILES\
+	$APP\
+	
+OFILESG=\
+	$STARTFILES\
+	maingate.$O\
+	$COMMONFILES\
+
+HFILES=\
+	adc.h\
+	u.h\
+	mem.h\
+	os.h\
+	slip.h\
+	mkfile\
+	cc1k.h\
+	io.h\
+	lib.h\
+
+all:V:	kernel.srec kernelg.srec
+
+</sys/src/cmd/mkone
+
+$O.out:	$OFILES
+	$LD -o $target -l $prereq
+	$LD -a -o /dev/null -l $prereq >L
+
+$O.g.out:	$OFILESG
+	$LD -o $target -l $prereq
+	$LD -a -o /dev/null -l $prereq >LG
+
+vec.s:	vectors
+	./mkvec <vectors >vec.s
+
+kernel.srec:	$O.out
+	aux/ms2 -p2 $O.out >$target
+
+kernelg.srec:	$O.g.out
+	aux/ms2 -p2 $O.g.out >$target
+
+%.$O:	/sys/src/avr/libc/%.s
+	$AS $AFLAGS /sys/src/avr/libc/$stem.s

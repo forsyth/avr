@@ -1,0 +1,66 @@
+.TH DBMAP 1
+.SH NAME
+dbmap \- decibel mapping
+.SH SYNOPSIS
+.B dbmap
+[
+.I " map directory"
+]
+.SH DESCRIPTION
+.B Dbmap
+displays a map of a region (currently York) and, given a series of mote locations
+and decibel measurements, will display an interpolated decibel map of the
+area for any given time during the span of the measurements. Typically a
+series of motes would measure sound levels over a certain period and then
+.B dbmap
+might be used to display the colour coded sound levels over time.
+.PP
+.B dbmap
+first reads the decibel measurement files from the given map directory
+(default york). This directory contains files of the form <moteid>.db, one
+file per mote used in a typical experiment. These files are created by the
+base station during the experiment. A typical file consists of a 4 byte
+start time in seconds followed by a series of records. Each record consists of a 2 byte
+time offset in seconds and a series of decibel values (currently 2) taken at certain
+intervals (currently 1 second) from that time offset. Values are in little-endian
+order.
+.PP
+It then reads a file containing the locations of the motes during the experiment.
+This file consists of a series of lines, each one containg a mote id followed by
+white space and then it's coordinates in either OS grid form or latitude/longitude
+form. See
+.B geodesy (2)
+for the string formats allowed here.
+.PP
+A map of the region is displayed with the motes shown as black rectangles.
+At the highest magnification, the ids of the motes are shown next to the black
+rectangle.
+To zoom into a particular area, either select a point with button 1 and select
+the zoomin option or simply double click with button 1 on the area of interest.
+To zoom back out, either select the zoomout option or double click with
+button 3. To move to another area of the map not on the display, simply
+move the mouse with button 1 down. To show the decibel map, choose
+the 'dbmap' option or press button 2. To select a particular time during the
+experiment, use the slider at the top of the display. As the mouse is moved
+over the map, latitude/longitude, OS grid coordinates and decibel values are
+shown for the point under the mouse.
+.PP
+Each actual and interpolated decibel value is coloured as follows :
+white(0 db), light green(<35 dB), green(<40 dB), dark green(<45 dB),
+yellow(<50dB), ochre(<55dB), orange(<60dB), cinnabar(<65dB),
+carmine(<70dB), lilac red(<75dB), blue(<80dB), dark blue(<85 dB),
+black(>=85 dB).
+.SH SOURCE
+.B /appl/cmd/mote/dbmap.b
+.SH FILES
+.B /lib/mote/york/york5000.bit
+.TP
+.B /lib/mote/york/[0-3]*
+.TP
+.B /lib/mote/db/*.db
+.TP
+.B /lib/mote/locations
+.SH SEE ALSO
+.IR db (1),
+.IR spectrum (1),
+.IR geodesy (2)

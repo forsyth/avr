@@ -1,0 +1,28 @@
+</$objtype/mkfile
+
+TARG=zc
+
+OFILES=	cgen.$O\
+	enam.$O\
+	list.$O\
+	mul.$O\
+	peep.$O\
+	reg.$O\
+	sgen.$O\
+	swt.$O\
+	txt.$O\
+
+HFILES=	gc.h\
+	z.out.h\
+	../cc/cc.h\
+
+LIB=../cc/cc.a$O
+
+BIN=/$objtype/bin
+
+</sys/src/cmd/mkone
+
+$LIB:
+	cd ../cc
+	mk install
+

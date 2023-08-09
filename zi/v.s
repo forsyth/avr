@@ -1,0 +1,5 @@
+TEXT	_start(SB), $0
+	MOVW	R0, R24
+	MOVW	R2, R4
+	BR	0(PC)
+	BREAK
